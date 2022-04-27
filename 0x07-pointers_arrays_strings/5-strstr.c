@@ -13,18 +13,18 @@ char  *_strstr(char *haystack, char *needle)
 
 	while (*haystack != '\0')
 	{
-		str1 = haystack; /* values */
+		str1 = haystack; /*values*/
 		str2 = needle;
 
-		/* declare While loop */
+		/*Star while loop */
 		while (*haystack != '\0' && *str2 != '\0' && *haystack == *str2)
 		{
-			haystack++; /* increment haystack */
-			str2++; /* increment the value of str2 */
+			haystack++;
+			str2++;
 		}
-		if (*str2 == '\0') 
-			return (str1); /* returns the value of str1 */
+		if (*str2 == '\0')
+			return (str1);
 		haystack = str1 + 1;
 	}
-	return (0); /* returns null */
+	return (0);
 }
