@@ -1,83 +1,49 @@
-#include <stdlib.h>
 #include "dog.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 /**
- * _copy  -   Make a copy of passed in argument
- * @src:      Data to make copy of
- * Return:    Pointer
+ * new_dog - is a function that creates a new dog
+ * @name: is a pointer to name
+ * @age: is a pointer to age
+ * @owner: is a pointer owner
+ * Return: pointer to new_dog
  */
-
-char *_copy(char *src)
-{
-	char *ptr;
-	int x, len;
-
-	if (src == NULL)
-	{
-		return (NULL);
-	}
-
-	for (len = 0; src[len] != '\0'; len++)
-		;
-
-	ptr = malloc(sizeof(char) * (len + 1));
-
-	if (ptr == NULL)
-	{
-		return (NULL);
-	}
-
-	for (x = 0; src[x] != '\0'; x++)
-	{
-		ptr[x] = src[x];
-	}
-
-	ptr[x] = '\0';
-	return (ptr);
-}
-
-/**
- * new_dog     - Create a new dog variable
- * @name:        Name of the dog
- * @age:         Age of the dog
- * @owner:       Owner of the dog
- * Return:       Pointer to new dog variable
- */
-
 dog_t *new_dog(char *name, float age, char *owner)
 {
+
+	int x = 0, n = 0, c;
 	dog_t *bingo;
-	char *new_name, *new_owner;
 
-	if (name == NULL || owner == NULL)
-	{
-		return (NULL);
-	}
+	while (name[x] != '\0')
+		x++;
+	while (owner[n] != '\0')
+		n++;
 
-	bing = malloc(sizeof(dog_t));
+	bingo = malloc(sizeof(dog_t));
 	if (bingo == NULL)
 	{
-		return (NULL);
-	}
-
-	new_name = _copy(name);
-	if (new_name == NULL)
-	{
 		free(bingo);
 		return (NULL);
 	}
-	(*bingo).name = new_name;
-
-	(*bingo).age = age;
-
-	new_owner = _copy(owner);
-	if (new_owner == NULL)
+	bingo->name = malloc(x * sizeof(bingo->name));
+	if (bingo->name == NULL)
 	{
-		free((*bingo).name);
+		free(bingo->name);
 		free(bingo);
 		return (NULL);
 	}
-	(*bingo).owner = new_owner;
-
+	for (c = 0; c <= x; c++)
+		bingo->name[c] = name[c];
+	bingo->age = age;
+	bingo->owner = malloc(n * sizeof(bingo->owner));
+	if (bingo->owner == NULL)
+	{
+		free(bingo->owner);
+		free(bingo->name);
+		free(bingo);
+		return (NULL);
+	}
+	for (c = 0; c <= n; c++)
+		bingo->owner[c] = owner[c];
 	return (bingo);
 }
