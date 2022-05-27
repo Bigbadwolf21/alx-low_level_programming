@@ -46,7 +46,7 @@ size_t print_listint_safe(const listint_t *head)
 		new->next = hptr;
 		hptr = new;
 
-		add = hptr;
+		sum = hptr;
 
 		while (sum->next != NULL)
 		{
