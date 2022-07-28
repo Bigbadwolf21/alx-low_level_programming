@@ -1,1 +1,1 @@
-ALX Low Level Programming Readme. There are many directories in this repository
+This readme is for ALX Hash Tables Project tasks
